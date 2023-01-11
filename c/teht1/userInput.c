@@ -38,6 +38,6 @@ void askIntNum(int* result, char* msg, int min, int max){
 
 void printNameAndAge(char** name, int age){
     printf("-------------------------\n");
-    printf("Your name is %s, your age is %d", name, age);
+    printf("Your name is %s, your age is %d\n", name, age);
     printf("Exit...\n");
 }
