@@ -4,21 +4,16 @@ int main(){
     char userInput[50];
 
     printf("Enter a string: ");
-    scanf("%s", &userInput);
+    scanf("%50s", &userInput);
 
-    char* ptrUserInput = userInput;
-    while(*ptrUserInput != '\0'){
-        ptrUserInput++;
-    }
+    char* pUserInput = userInput;
+    while(*pUserInput != '\0')
+        pUserInput++;
+    
 
-    while(ptrUserInput >= userInput){
-        
-    }
-
-    printf("%p \n", ptrUserInput);
-    printf("%c", *ptrUserInput);
-    if(*ptrUserInput == '\0'){
-        printf("end");
+    while(pUserInput >= userInput){
+        printf("%c", *pUserInput);
+        pUserInput--;
     }
 
     return 0;
