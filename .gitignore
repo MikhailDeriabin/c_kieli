@@ -1,3 +1,4 @@
 /.vscode
 *.stackdump
 *.exe
+*.vs
