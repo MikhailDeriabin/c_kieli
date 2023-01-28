@@ -1,0 +1,3 @@
+C:/Users/mikko/Desktop/folders/metropolia/3.3/c_kieli/cpp/teht3(1)/cmake-build-debug/CMakeFiles/teht3_1.dir
+C:/Users/mikko/Desktop/folders/metropolia/3.3/c_kieli/cpp/teht3(1)/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/mikko/Desktop/folders/metropolia/3.3/c_kieli/cpp/teht3(1)/cmake-build-debug/CMakeFiles/rebuild_cache.dir
