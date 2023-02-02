@@ -9,8 +9,8 @@ int main(int argc, char* argv[]){
 
 void run(){
     int command;
-	TravelCard card;
-	card.clearTravelCard();
+	TravelCard* card = new TravelCard();
+	card->clearTravelCard();
 
 	do{
 		//system("clear");
@@ -27,31 +27,32 @@ void run(){
 
 		switch (command){
 		case 1:
-			initTravelCard(&card);
+			initTravelCard(card);
 			break;
 		
 		case 2:
-            addSaldo(&card);
+            addSaldo(card);
 			break;
 
 		case 3:
-			result = card.travel(Travel::HELSINKI);
+			result = card->travel(Travel::HELSINKI);
             printTravelResult(result);
 			break;
 
 		case 4:
-            result = card.travel(Travel::METROPOLITAN_AREA);;
+            result = card->travel(Travel::METROPOLITAN_AREA);;
             printTravelResult(result);
 			break;
 
 		case 5:
             cout << "Card information:\n";
-			cout << "Name: " << card.getOwner() << endl;
-            cout << "Saldo: " << card.getSaldo() << endl;
+			cout << "Name: " << *card->getOwner() << endl;
+            cout << "Saldo: " << *card->getSaldo() << endl;
 			break;
 
 		case 6:
             cout <<"See you\n";
+            delete card;
 			break;
 
 		default:
@@ -82,7 +83,7 @@ void initTravelCard(TravelCard* card) {
 	card->setOwner(name);
 
 	cout << "Thanks\n";
-	cout << card->getOwner() << ", would you like to put some money?\n";
+	cout << *card->getOwner() << ", would you like to put some money?\n";
 	string choice;
 	while (choice != "yes" && choice != "no") {
 		cout << "yes/no? ";
@@ -93,38 +94,38 @@ void initTravelCard(TravelCard* card) {
 	if (choice == "yes")
         addSaldo(card);
 
-	cout << "Thank you " << card->getOwner() << ", your card is ready\n";
+	cout << "Thank you " << *card->getOwner() << ", your card is ready\n";
 }
 
 void addSaldo(TravelCard* card) {
     cout << "How much you want to add?\n";
     cout << "0 - cancel\n";
 
-	string maaraStr;
-	float maara = -1.0f;
-	int peruutettu = 0;
-	while (maara < 0) {
+	string amountStr;
+	float amount = -1.0f;
+	bool isCanceled = false;
+	while (amount < 0) {
         cout << "00.00 (euro): ";
-		getline(cin, maaraStr);
+		getline(cin, amountStr);
         try {
-            maara = stof(maaraStr);
+            amount = stof(amountStr);
         } catch (...){
-            maara = -1;
+            amount = -1;
         }
-		if (maara < 0)
+		if (amount < 0)
 			cout << "Amount can not be below 0\n";
 
-		if (maara == 0) {
+		if (amount == 0) {
 			cout << "Canceled\n";
-			peruutettu = 1;
+            isCanceled = true;
 			break;
 		}
 	}
 
-	if (!peruutettu) {
-		card->addSaldo(maara);
+	if (!isCanceled) {
+		card->addSaldo(amount);
         cout << "Saldo is added\n";
-        cout << "Saldo total: " << card->getSaldo();
+        cout << "Saldo total: " << *card->getSaldo() << endl;
 	}
 }
 

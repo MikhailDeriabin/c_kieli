@@ -3,7 +3,15 @@
 #include "TravelStatus.h"
 #include <iostream>
 
-TravelCard::TravelCard(){}
+TravelCard::TravelCard(){
+    this->setOwner("Anonymous");
+    this->setSaldo(0.0f);
+}
+
+TravelCard::~TravelCard(){
+    delete owner;
+    delete saldo;
+}
 
 void TravelCard::addSaldo(float amount) {
 	if (amount < 0) {
@@ -11,7 +19,7 @@ void TravelCard::addSaldo(float amount) {
 		return;
 	}
 
-	this->saldo += amount;
+	*this->saldo += amount;
 }
 
 TravelStatus TravelCard::travel(Travel travel) {
@@ -33,20 +41,20 @@ void TravelCard::clearTravelCard() {
 	this->setSaldo(0.0f);
 }
 
-string TravelCard::getOwner() { return this->owner; }
-void TravelCard::setOwner(string owner) { this->owner = owner; }
-float TravelCard::getSaldo() { return this->saldo; }
+string* TravelCard::getOwner() { return this->owner; }
+void TravelCard::setOwner(string owner) { *this->owner = owner; }
+float* TravelCard::getSaldo() { return this->saldo; }
 void TravelCard::setSaldo(float saldo) {
 	if (saldo >= 0)
-		this->saldo = saldo;
+        *this->saldo = saldo;
 }
 
 bool TravelCard::decreaseSaldo(float amount) {
-	if (this->getSaldo() < amount) {
+	if ((*this->getSaldo()) < amount) {
 		return false;
 	}
 	else {
-		this->saldo -= amount;
+        *this->saldo -= amount;
 		return true;
 	}
 }

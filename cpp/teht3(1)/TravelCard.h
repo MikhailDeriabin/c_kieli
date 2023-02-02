@@ -12,20 +12,21 @@ using namespace std;
 
 class TravelCard {
 private:
-	string owner = "Anonymus";
-	float saldo = 0.0f;
+	string* owner = new string;
+	float* saldo = new float;
 	bool decreaseSaldo(float amount);
 
 public:
 	TravelCard();
+    ~TravelCard();
 
 	void addSaldo(float amount);
 	TravelStatus travel(Travel travel);
 	void clearTravelCard();
 
-	string getOwner();
+	string* getOwner();
 	void setOwner(string owner);
-	float getSaldo();
+	float* getSaldo();
 	void setSaldo(float saldo);
 };
 
