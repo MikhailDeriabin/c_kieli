@@ -21,7 +21,7 @@ void TravelCard::addSaldo(float amount) {
 
 	*this->saldo += amount;
 }
-
+/*
 TravelStatus TravelCard::travel(Travel travel) {
 	bool isSuccess = false;
 	switch (travel) {
@@ -34,7 +34,7 @@ TravelStatus TravelCard::travel(Travel travel) {
 	default:
 		return TravelStatus::NOT_PROCESSED;;
 	}
-}
+}*/
 
 void TravelCard::clearTravelCard() {
 	this->setOwner("Anonymus");
@@ -57,4 +57,10 @@ bool TravelCard::decreaseSaldo(float amount) {
         *this->saldo -= amount;
 		return true;
 	}
+}
+
+FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> TravelCard::getHistory() { return this->StampHistory; }
+
+void TravelCard::addStamp(Stamp& stamp) {
+	StampHistory.push(stamp);
 }

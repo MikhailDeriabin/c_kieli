@@ -6,11 +6,13 @@
 #include "TravelCard.h"
 #include "Travel.h"
 #include "TravelStatus.h"
+#include "Stamper.h"
+#include "Stamp.h"
 
 void printCommands();
 void initTravelCard(TravelCard* card);
 void addSaldo(TravelCard* card);
-void printTravelResult(TravelStatus status);
+void printTravelResult(bool isSuccess);
 void run();
 
 #endif

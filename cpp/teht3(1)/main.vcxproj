@@ -99,10 +99,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Stamp.cpp" />
     <ClCompile Include="TravelCard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
+    <ClInclude Include="Stamp.h" />
+    <ClInclude Include="Stamper.h" />
     <ClInclude Include="Travel.h" />
     <ClInclude Include="TravelCard.h" />
     <ClInclude Include="TravelStatus.h" />

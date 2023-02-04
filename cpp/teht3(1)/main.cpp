@@ -12,12 +12,15 @@ void run(){
 	TravelCard* card = new TravelCard();
 	card->clearTravelCard();
 
+	Stamper helsinkiStamper(Travel::HELSINKI);
+	Stamper metropolitanStamper(Travel::METROPOLITAN_AREA);
+
 	do{
 		//system("clear");
 		printCommands();
 
         string commandStr;
-        TravelStatus result;
+        bool result;
 		getline(cin, commandStr);
         try {
             command = stoi(commandStr);
@@ -35,12 +38,12 @@ void run(){
 			break;
 
 		case 3:
-			result = card->travel(Travel::HELSINKI);
+			result = helsinkiStamper.addStamp(*card);
             printTravelResult(result);
 			break;
 
 		case 4:
-            result = card->travel(Travel::METROPOLITAN_AREA);;
+			result = metropolitanStamper.addStamp(*card);
             printTravelResult(result);
 			break;
 
@@ -129,9 +132,10 @@ void addSaldo(TravelCard* card) {
 	}
 }
 
-void printTravelResult(TravelStatus status){
-    if(status == TravelStatus::INSUFFICIENT_MONEY_AMOUNT)
-        cout << "Sorry, but there is not enough money\n";
+void printTravelResult(bool isSuccess){
+    if(isSuccess)     
+		cout << "Have a nice trip!\n";
     else
-        cout << "Have a nice trip!\n";
+		cout << "Sorry, but there is not enough money\n";
+        
 }
