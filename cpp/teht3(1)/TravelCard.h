@@ -2,6 +2,7 @@
 #define TRAVELCARD_H
 
 #include <string>
+#include <iostream>
 #include "FixedSizeQueue.h"
 #include "Travel.h"
 #include "TravelStatus.h"

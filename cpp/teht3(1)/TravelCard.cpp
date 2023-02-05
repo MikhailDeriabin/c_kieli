@@ -1,7 +1,4 @@
 #include "TravelCard.h"
-#include "Travel.h"
-#include "TravelStatus.h"
-#include <iostream>
 
 TravelCard::TravelCard(){
     this->setOwner("Anonymous");
