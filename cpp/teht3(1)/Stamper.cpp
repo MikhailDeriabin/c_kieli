@@ -14,6 +14,7 @@ bool Stamper::addStamp(TravelCard& card) {
 		auto timeNow = chrono::system_clock::now();
 		time_t time = chrono::system_clock::to_time_t(timeNow);
 		Stamp stamp(time, place);
+        stamp.setPersonName(*card.getOwner());
 		card.addStamp(stamp);
 
 		return true;

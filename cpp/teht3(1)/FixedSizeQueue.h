@@ -4,10 +4,15 @@
 #include <queue>
 #include <deque>
 
-template <typename T, int maxSize, typename Container = std::deque<T>>
+template <typename T, const int maxSize, typename Container = std::deque<T>>
 class FixedSizeQueue : public std::queue<T, Container>{
 public:
-	void push(T& elem);
+	inline void push(T& elem){
+        if (this->size() == maxSize)
+            this->c.pop_front();
+
+        std::queue<T, Container>::push(elem);
+    }
 };
 
 #endif

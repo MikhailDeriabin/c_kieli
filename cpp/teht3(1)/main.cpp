@@ -53,7 +53,11 @@ void run(){
             cout << "Saldo: " << *card->getSaldo() << endl;
 			break;
 
-		case 6:
+        case 6:
+            printCardHistory(card);
+            break;
+
+		case 7:
             cout <<"See you\n";
             delete card;
 			break;
@@ -63,7 +67,7 @@ void run(){
 			break;		
 		}
 	}
-	while (command != 6);
+	while (command != 7);
 
 }
 
@@ -75,7 +79,8 @@ void printCommands(){
     cout << "\nTravel in Helsinki\t\t3";
     cout << "\nTravel at Metropolitan area\t4";
     cout << "\nPrint card info\t\t\t5";
-    cout << "\nEnd\t\t\t\t6";
+    cout << "\nPrint travel history\t\t6";
+    cout << "\nEnd\t\t\t\t7";
     cout << "\nCommand: ";
 }
 
@@ -138,4 +143,17 @@ void printTravelResult(bool isSuccess){
     else
 		cout << "Sorry, but there is not enough money\n";
         
+}
+
+void printCardHistory(TravelCard* card){
+    FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> history = card->getHistory();
+    stack<string> historyStack;
+    while (!history.empty()) {
+        historyStack.push(history.front().toString());
+        history.pop();
+    }
+    while (!historyStack.empty()) {
+        cout << historyStack.top() << endl;
+        historyStack.pop();
+    }
 }
