@@ -46,3 +46,15 @@ FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> TravelCard::getHistory() { return this->
 void TravelCard::addStamp(Stamp& stamp) {
 	StampHistory.push(stamp);
 }
+
+string TravelCard::toString() {
+	string result =  "Card information:\n";
+	result += "Owner: " + *owner + "\n";
+	result += "Amount: " + to_string(*saldo) + "\n";
+    return result;
+}
+
+ostream& operator<<(ostream& os, shared_ptr<TravelCard> card){
+	os << card->toString();
+	return os;
+}

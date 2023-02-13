@@ -35,6 +35,9 @@ public:
 	bool decreaseSaldo(float amount);
 	FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> getHistory();
 	void addStamp(Stamp& stamp);
+    string toString();
+
+    friend ostream& operator<<(ostream& os, shared_ptr<TravelCard> card);
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 #include <ctime>
 #include <string>
+#include <memory>
 #include "Travel.h"
 #include "TravelString.h"
 using namespace std;
@@ -14,6 +15,7 @@ public:
 	Travel getTravel();
     void setPersonName(string name);
 	string toString();
+    friend ostream& operator<<(ostream& os, Stamp& stamp);
 
 private:
 	time_t time;

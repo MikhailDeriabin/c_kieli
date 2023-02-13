@@ -16,6 +16,11 @@ string Stamp::toString(){
 	return timeStr + " - " + placeName + " (" + personName + ")";
 }
 
+ostream& operator<<(ostream& os, Stamp& stamp){
+    os << stamp.toString();
+    return os;
+}
+
 time_t Stamp::getTime() { return this->time; }
 
 Travel Stamp::getTravel() { return this->travel; }

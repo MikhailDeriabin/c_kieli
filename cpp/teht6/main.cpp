@@ -50,9 +50,7 @@ void run(){
 			break;
 
 		case 5:
-            cout << "Card information:\n";
-			cout << "Name: " << *card->getOwner() << endl;
-            cout << "Saldo: " << *card->getSaldo() << endl;
+            cout << card;
 			break;
 
         case 6:
@@ -154,9 +152,9 @@ void printCardHistory(shared_ptr<TravelCard> card){
         return;
     }
 
-    stack<string> historyStack;
+    stack<Stamp> historyStack;
     while (!history.empty()) {
-        historyStack.push(history.front().toString());
+        historyStack.push(history.front());
         history.pop();
     }
     while (!historyStack.empty()) {
