@@ -15,7 +15,7 @@
 
 using namespace std;
 
-class TravelCard {
+class TravelCard{
 private:
     shared_ptr<string> owner;
     shared_ptr<float> saldo;

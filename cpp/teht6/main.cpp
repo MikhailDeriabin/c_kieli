@@ -38,12 +38,14 @@ void run(){
 			break;
 
 		case 3:
-			result = helsinkiStamper.addStamp(*card);
+            result = helsinkiStamper << card;
+			//result = helsinkiStamper.addStamp(*card);
             printTravelResult(result);
 			break;
 
 		case 4:
-			result = metropolitanStamper.addStamp(*card);
+            result = metropolitanStamper << card;
+			//result = metropolitanStamper.addStamp(*card);
             printTravelResult(result);
 			break;
 
@@ -146,6 +148,12 @@ void printTravelResult(bool isSuccess){
 
 void printCardHistory(shared_ptr<TravelCard> card){
     FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> history = card->getHistory();
+
+    if(history.size() == 0){
+        cout << "No travels made yet";
+        return;
+    }
+
     stack<string> historyStack;
     while (!history.empty()) {
         historyStack.push(history.front().toString());
