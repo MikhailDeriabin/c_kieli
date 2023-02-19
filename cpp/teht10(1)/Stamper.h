@@ -15,8 +15,8 @@ using namespace std;
 class Stamper {
 public:
 	Stamper(Travel place);
-	bool addStamp(shared_ptr<TravelCard> card);
-    bool operator<<(shared_ptr<TravelCard> card);
+    TravelCard addStamp(TravelCard card);
+    TravelCard operator<<(TravelCard card);
 	Travel getPlace();
 
 private:

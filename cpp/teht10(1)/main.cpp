@@ -9,8 +9,8 @@ int main(int argc, char* argv[]){
 
 void run(){
     int command;
-    shared_ptr<TravelCard> card(new TravelCard);
-	card->clearTravelCard();
+    TravelCard card;
+	card.clearTravelCard();
 
 	Stamper helsinkiStamper(Travel::HELSINKI);
 	Stamper metropolitanStamper(Travel::METROPOLITAN_AREA);
@@ -21,6 +21,8 @@ void run(){
 
         string commandStr;
         bool result;
+        int historySizeBefore;
+        int historySizeAfter;
 		getline(cin, commandStr);
         try {
             command = stoi(commandStr);
@@ -30,21 +32,27 @@ void run(){
 
 		switch (command){
 		case 1:
-			initTravelCard(card);
+			initTravelCard(&card);
 			break;
 		
 		case 2:
-            addSaldo(card);
+            addSaldo(&card);
 			break;
 
 		case 3:
-            result = helsinkiStamper << card;
+            historySizeBefore = card.getHistory().size();
+            card = helsinkiStamper << card;
+            historySizeAfter = card.getHistory().size();
+            result = historySizeAfter > historySizeBefore;
 			//result = helsinkiStamper.addStamp(*card);
             printTravelResult(result);
 			break;
 
 		case 4:
-            result = metropolitanStamper << card;
+            historySizeBefore = card.getHistory().size();
+            card = metropolitanStamper << card;
+            historySizeAfter = card.getHistory().size();
+            result = historySizeAfter > historySizeBefore;
 			//result = metropolitanStamper.addStamp(*card);
             printTravelResult(result);
 			break;
@@ -83,7 +91,7 @@ void printCommands(){
     cout << "\nCommand: ";
 }
 
-void initTravelCard(shared_ptr<TravelCard> card) {
+void initTravelCard(TravelCard* card) {
 	cout << "What is your name? ";
 	string name;
 	getline(cin, name);
@@ -104,7 +112,7 @@ void initTravelCard(shared_ptr<TravelCard> card) {
 	cout << "Thank you " << card->getOwner() << ", your card is ready\n";
 }
 
-void addSaldo(shared_ptr<TravelCard> card) {
+void addSaldo(TravelCard* card) {
     cout << "How much you want to add?\n";
     cout << "0 - cancel\n";
 
@@ -144,18 +152,18 @@ void printTravelResult(bool isSuccess){
         
 }
 
-void printCardHistory(shared_ptr<TravelCard> card){
-    FixedSizeQueue<Stamp, MAX_HISTORY_SIZE>* history = card->getHistory();
+void printCardHistory(TravelCard card){
+    FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> history = card.getHistory();
 
-    if(history->size() == 0){
+    if(history.size() == 0){
         cout << "No travels made yet";
         return;
     }
 
     stack<Stamp> historyStack;
-    while (!history->empty()) {
-        historyStack.push(history->front());
-        history->pop();
+    while (!history.empty()) {
+        historyStack.push(history.front());
+        history.pop();
     }
     while (!historyStack.empty()) {
         cout << historyStack.top() << endl;

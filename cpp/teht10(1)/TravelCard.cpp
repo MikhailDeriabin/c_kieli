@@ -1,19 +1,21 @@
 #include "TravelCard.h"
 
 TravelCard::TravelCard(){
-    this->setOwner("Anonymous");
-    this->setSaldo(0.0f);
+    owner = new string;
+    saldo = new float;
+    //this->setOwner("Anonymous");
+    //this->setSaldo(0.0f);
 }
 
 TravelCard::~TravelCard(){
     delete owner;
     delete saldo;
-    delete StampHistory;
-    cout << "TravelCard object deleted" << endl;
 }
 
-TravelCard::TravelCard (const TravelCard& card){
+TravelCard::TravelCard(const TravelCard& card){
+    owner = new string;
     *owner = *card.owner;
+    saldo = new float;
     *saldo = *card.saldo;
 }
 
@@ -49,10 +51,10 @@ bool TravelCard::decreaseSaldo(float amount) {
 	}
 }
 
-FixedSizeQueue<Stamp, MAX_HISTORY_SIZE>* TravelCard::getHistory() { return this->StampHistory; }
+FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> TravelCard::getHistory() { return this->StampHistory; }
 
 void TravelCard::addStamp(Stamp& stamp) {
-	StampHistory->push(stamp);
+	StampHistory.push(stamp);
 }
 
 string TravelCard::toString() {
@@ -62,7 +64,7 @@ string TravelCard::toString() {
     return result;
 }
 
-ostream& operator<<(ostream& os, shared_ptr<TravelCard> card){
-	os << card->toString();
+ostream& operator<<(ostream& os, TravelCard card){
+	os << card.toString();
 	return os;
 }

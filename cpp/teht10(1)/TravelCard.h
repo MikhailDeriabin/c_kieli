@@ -18,9 +18,9 @@ using namespace std;
 
 class TravelCard{
 private:
-    string* owner = new string;
-    float* saldo = new float;
-    FixedSizeQueue<Stamp, MAX_HISTORY_SIZE>* StampHistory = new FixedSizeQueue<Stamp, MAX_HISTORY_SIZE>();
+    string* owner;
+    float* saldo;
+    FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> StampHistory;
 
 public:
 	TravelCard();
@@ -35,11 +35,11 @@ public:
     float getSaldo();
 	void setSaldo(float saldo);
 	bool decreaseSaldo(float amount);
-    FixedSizeQueue<Stamp, MAX_HISTORY_SIZE>* getHistory();
+    FixedSizeQueue<Stamp, MAX_HISTORY_SIZE> getHistory();
 	void addStamp(Stamp& stamp);
     string toString();
 
-    friend ostream& operator<<(ostream& os, shared_ptr<TravelCard> card);
+    friend ostream& operator<<(ostream& os, TravelCard card);
 };
 
 #endif

@@ -8,22 +8,24 @@ Stamper::Stamper(Travel place){
 		travelPrice = METROPOLITAN_AREA_PRICE;
 }
 
-bool Stamper::addStamp(shared_ptr<TravelCard> card) {
-	bool isSuccess = card->decreaseSaldo(travelPrice);
+TravelCard Stamper::addStamp(TravelCard card) {
+    cout << "Saldo before: " << card.getSaldo() << endl;
+	bool isSuccess = card.decreaseSaldo(travelPrice);
+    cout << "Saldo after: " << card.getSaldo() << endl;
+
 	if (isSuccess) {
+        cout << "Success!" << endl;
 		auto timeNow = chrono::system_clock::now();
 		time_t time = chrono::system_clock::to_time_t(timeNow);
 		Stamp stamp(time, place);
-        stamp.setPersonName(card->getOwner());
-		card->addStamp(stamp);
-
-		return true;
+        stamp.setPersonName(card.getOwner());
+		card.addStamp(stamp);
 	}
 
-	return false;
+	return card;
 }
 
-bool Stamper::operator<<(shared_ptr<TravelCard> card){
+TravelCard Stamper::operator<<(TravelCard card){
     return this->addStamp(card);
 }
 
