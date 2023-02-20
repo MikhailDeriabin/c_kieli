@@ -98,7 +98,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FixedSizeQueue.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Stamp.cpp" />
     <ClCompile Include="Stamper.cpp" />
